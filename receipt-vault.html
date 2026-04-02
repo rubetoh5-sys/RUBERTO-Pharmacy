@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotation | Ruberto IT Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root { --primary: #003366; --accent: #00d4ff; --warning: #f59e0b; --bg: #f8fafc; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 15px; color: #1e293b; }
+
+        .container { max-width: 800px; margin: auto; }
+        
+        /* Navigation & Controls */
+        .nav-bar { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .btn { padding: 10px 15px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 13px; text-decoration: none; }
+        .btn-back { background: #64748b; color: white; }
+        .btn-pdf { background: var(--primary); color: white; }
+
+        /* Quotation Card */
+        .quote-card { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-top: 8px solid var(--accent); }
+        
+        .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #f1f5f9; padding-bottom: 20px; margin-bottom: 20px; }
+        .brand h1 { margin: 0; font-size: 26px; color: var(--primary); letter-spacing: 1px; }
+        .brand p { margin: 5px 0; font-size: 13px; color: #64748b; }
+
+        /* Financial Summary */
+        .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+        .stat-box { background: #f0f9ff; padding: 15px; border-radius: 10px; border: 1px solid #bae6fd; }
+        .stat-box small { font-size: 11px; text-transform: uppercase; color: #0369a1; font-weight: bold; }
+        .stat-box div { font-size: 22px; font-weight: bold; color: var(--primary); }
+
+        /* Table Styles */
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; font-size: 11px; text-transform: uppercase; color: #94a3b8; padding: 10px; border-bottom: 2px solid #f1f5f9; }
+        td { padding: 15px 10px; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
+        
+        .status { font-size: 10px; font-weight: bold; padding: 4px 10px; border-radius: 12px; text-transform: uppercase; }
+        .req { background: #fee2e2; color: #991b1b; } /* Required */
+        .opt { background: #e0f2fe; color: #0369a1; } /* Optional */
+
+        .validity-note { background: #fffbeb; border: 1px solid #fef3c7; padding: 15px; border-radius: 8px; margin-top: 30px; font-size: 13px; color: #92400e; }
+
+        /* Mobile View */
+        @media (max-width: 600px) {
+            .summary-grid { grid-template-columns: 1fr; }
+            table thead { display: none; }
+            table tr { display: block; margin-bottom: 15px; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px; }
+            table td { display: flex; justify-content: space-between; border: none; padding: 8px 5px; }
+            table td::before { content: attr(data-label); font-weight: bold; color: #64748b; }
+        }
+
+        @media print { .btn { display: none; } .quote-card { box-shadow: none; border: none; padding: 0; } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nav-bar">
+            <a href="index.html" class="btn btn-back"><i class="fas fa-arrow-left"></i> PROJECT HUB</a>
+            <button class="btn btn-pdf" onclick="downloadQuote()"><i class="fas fa-file-pdf"></i> DOWNLOAD QUOTATION</button>
+        </div>
+
+        <div class="quote-card" id="quote-content">
+            <div class="header">
+                <div class="brand">
+                    <h1>Project Quotation</h1>
+                    <p><strong>Quote #:</strong> QT-2026-001</p>
+                    <p><strong>Client:</strong> <span contenteditable="true">Kamanjab Pharmacy</span></p>
+                    <p><strong>Project:</strong> Pharmacy Digital Transformation</p>
+                </div>
+                <div style="text-align: right; color: var(--primary);">
+                    <i class="fas fa-file-invoice" style="font-size: 50px; opacity: 0.1;"></i>
+                </div>
+            </div>
+
+            <div class="summary-grid">
+                <div class="stat-box">
+                    <small>Estimated Investment</small>
+                    <div contenteditable="true">N$ 10,750.00</div>
+                </div>
+                <div class="stat-box" style="background: #f8fafc; border-color: #e2e8f0;">
+                    <small>Monthly Support (SLA)</small>
+                    <div contenteditable="true">N$ 650.00</div>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Phase / Item</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Item" style="font-weight: bold;" contenteditable="true">System Licensing</td>
+                        <td data-label="Desc" contenteditable="true">KK PMS v3.0 Lifetime Core License</td>
+                        <td data-label="Amount" contenteditable="true">N$ 5,375.00</td>
+                        <td data-label="Type"><span class="status req">Required</span></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item" style="font-weight: bold;" contenteditable="true">Infrastructure</td>
+                        <td data-label="Desc" contenteditable="true">Workstation Setup & Router Config</td>
+                        <td data-label="Amount" contenteditable="true">N$ 4,000.00</td>
+                        <td data-label="Type"><span class="status req">Required</span></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item" style="font-weight: bold;" contenteditable="true">VPN & Security</td>
+                        <td data-label="Desc" contenteditable="true">Secure Remote Access & Tunneling</td>
+                        <td data-label="Amount" contenteditable="true">N$ 1,375.00</td>
+                        <td data-label="Type"><span class="status opt">Optional</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="validity-note">
+                <i class="fas fa-info-circle"></i> <strong>Validity:</strong> This quotation is valid for 14 days. Prices include installation and 1 week of staff training.
+            </div>
+
+            <div style="margin-top: 40px; border-top: 1px solid #f1f5f9; padding-top: 20px; font-size: 12px; color: #64748b; text-align: center;">
+                <strong>Ruberto IT Solutions</strong> | Professional IT Solutions | Namibia<br>
+                <span style="font-size: 10px;">Connection Made Easy • +264 81 225 1577</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadQuote() {
+            const element = document.getElementById('quote-content');
+            const options = {
+                margin: 0.5,
+                filename: 'Ruberto_IT_Pharmacy_Quotation.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().set(options).from(element).save();
+        }
+    </script>
+</body>
+</html>

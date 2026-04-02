@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KK PMS | Medical Aid Claims</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary: #003366; --accent: #00d4ff; --success: #2e7d32; --warning: #f59e0b; --bg: #f8fafc; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 20px; }
+        
+        .claim-container { max-width: 800px; margin: auto; background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); overflow: hidden; }
+        .header-strip { background: var(--primary); color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        
+        .verification-panel { padding: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; border-bottom: 1px solid #eee; }
+        .input-box label { display: block; font-size: 11px; font-weight: bold; color: #666; margin-bottom: 5px; text-transform: uppercase; }
+        .input-box input, .input-box select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; box-sizing: border-box; }
+
+        .btn-verify { grid-column: span 2; background: var(--accent); color: var(--primary); border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; font-size: 16px; }
+        .btn-verify:hover { filter: brightness(1.1); }
+
+        /* Real-time Status UI */
+        .status-display { padding: 30px; display: none; background: #fdfdfd; animation: slideDown 0.4s ease; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .status-card { border: 2px solid var(--success); border-radius: 10px; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .status-info b { display: block; font-size: 18px; color: var(--success); }
+        .status-info span { font-size: 12px; color: #666; }
+
+        .price-breakdown { margin-top: 20px; font-size: 14px; }
+        .price-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #eee; }
+        .total-pay { font-weight: bold; font-size: 18px; color: var(--primary); border-top: 2px solid var(--primary); padding-top: 10px; margin-top: 10px; }
+
+        .psemas-logo { font-weight: 900; font-style: italic; color: #003366; border: 1px solid #003366; padding: 2px 5px; font-size: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="claim-container">
+        <div class="header-strip">
+            <div>
+                <h2 style="margin:0; font-size: 18px;">Insurance Verification</h2>
+                <small style="opacity: 0.8;">Switching Center: NAMIBIA-HEALTH-NET</small>
+            </div>
+            <div class="psemas-logo">PSEMAS READY</div>
+        </div>
+
+        <div class="verification-panel">
+            <div class="input-box">
+                <label>Medical Aid Scheme</label>
+                <select id="scheme">
+                    <option>PSEMAS (Government)</option>
+                    <option>Heritage Health</option>
+                    <option>Bankmed</option>
+                    <option>NMC</option>
+                </select>
+            </div>
+            <div class="input-box">
+                <label>Membership Number</label>
+                <input type="text" id="memberID" placeholder="e.g. 95081200345">
+            </div>
+            <div class="input-box">
+                <label>Patient Dependent Code</label>
+                <input type="number" id="depCode" value="00">
+            </div>
+            <div class="input-box">
+                <label>Tariff Code / NAPPI</label>
+                <input type="text" id="tariff" placeholder="704215-001">
+            </div>
+
+            <button class="btn-verify" onclick="runVerify()">
+                <i class="fas fa-network-wired"></i> VERIFY ONLINE ELIGIBILITY
+            </button>
+        </div>
+
+        <div id="statusResult" class="status-display">
+            <div class="status-card">
+                <div class="status-info">
+                    <b>ELIGIBILITY CONFIRMED</b>
+                    <span id="patientName">Member: R. Harochab</span>
+                </div>
+                <i class="fas fa-check-circle" style="color:var(--success); font-size: 30px;"></i>
+            </div>
+
+            <div class="price-breakdown">
+                <div class="price-row"><span>Item Cost (Amoxicillin)</span> <span>N$ 185.00</span></div>
+                <div class="price-row"><span>Medical Aid Cover (95%)</span> <span style="color:var(--success)">- N$ 175.75</span></div>
+                <div class="price-row total-pay"><span>Patient Co-Payment</span> <span>N$ 9.25</span></div>
+            </div>
+            
+            <p style="font-size: 10px; color: #999; margin-top: 15px; text-align: center;">
+                Authorization Code: <span style="font-family: monospace;">AUTH-264-99812-X</span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function runVerify() {
+            const btn = document.querySelector('.btn-verify');
+            const result = document.getElementById('statusResult');
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> CONNECTING TO SWITCH...';
+            
+            // Simulate 2 second network delay to look real
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> VERIFIED';
+                btn.style.background = '#e2e8f0';
+                btn.style.color = '#94a3b8';
+                result.style.display = 'block';
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>
