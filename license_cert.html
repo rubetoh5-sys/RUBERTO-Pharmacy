@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software License |Ruberto IT Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <style>
+        :root {
+            --primary: #003366;
+            --accent: #00d4ff;
+            --gold: #c5a059;
+            --white: #ffffff;
+        }
+
+        body {
+            background: #e2e8f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* Responsive Container */
+        #certificate-area {
+            background: var(--white);
+            width: 100%;
+            max-width: 800px;
+            padding: 40px;
+            box-sizing: border-box;
+            border: 12px solid var(--primary);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        /* Gold inner border */
+        .inner-border {
+            border: 2px solid var(--gold);
+            padding: 30px;
+            height: 100%;
+        }
+
+        .header-icon { font-size: 50px; color: var(--primary); margin-bottom: 10px; }
+        
+        h1 { 
+            font-size: clamp(28px, 5vw, 45px); 
+            color: var(--primary); 
+            text-transform: uppercase; 
+            margin: 10px 0;
+            letter-spacing: 3px;
+        }
+
+        .subtitle { 
+            color: var(--gold); 
+            font-style: italic; 
+            font-size: 1.2rem;
+            margin-bottom: 30px; 
+        }
+
+        .client-name {
+            font-size: clamp(22px, 4vw, 32px);
+            color: var(--primary);
+            font-weight: bold;
+            text-decoration: underline;
+            margin: 20px 0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .software-title {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            display: inline-block;
+            border-radius: 4px;
+            margin: 15px 0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .details-grid {
+            text-align: left;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px auto;
+            max-width: 500px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            border-left: 5px solid var(--gold);
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 50px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .sig-box { border-top: 1px solid #333; width: 180px; padding-top: 10px; font-size: 12px; }
+
+        /* Controls */
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .btn:hover { background: var(--accent); color: var(--primary); }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            #certificate-area { padding: 15px; border-width: 6px; }
+            .inner-border { padding: 15px; }
+            .footer { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <button class="btn" onclick="generatePDF()">
+            <i class="fas fa-file-pdf"></i> DOWNLOAD PDF
+        </button>
+        <button class="btn" onclick="window.print()" style="background:#64748b;">
+            <i class="fas fa-print"></i> PRINT
+        </button>
+    </div>
+
+    <div id="certificate-area">
+        <div class="inner-border">
+            <div class="header-icon"><i class="fas fa-award"></i></div>
+            
+            <h1>Certificate</h1>
+            <div class="subtitle">Official Software License</div>
+
+            <p>This document formally certifies that</p>
+            <div class="client-name" contenteditable="true">[CLIENT NAME]</div>
+            
+            <p>is a registered and authorized user of</p>
+            <div class="software-title" contenteditable="true">Ruberto IT Solutions Pharmacy Management System (v3.0)</div>
+
+            <div class="details-grid">
+                <div><strong>License Key:</strong> <span contenteditable="true">KK-NAM-2026-X892-441</span></div>
+                <div><strong>Issue Date:</strong> <span contenteditable="true">April 02, 2026</span></div>
+                <div><strong>Authorized by:</strong> Ruberto Harochab (KK Enterprise)</div>
+            </div>
+
+            <div class="footer">
+                <div class="sig-box">
+                    <strong>Ruberto Harochab</strong><br>
+                    Lead IT Administrator
+                </div>
+                
+                <div style="color: var(--gold); font-size: 40px;">
+                    <i class="fas fa-shield-check"></i>
+                    <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px;">Verified</div>
+                </div>
+
+                <div class="sig-box">
+                    <strong>Client Representative</strong><br>
+                    Acknowledgement
+                </div>
+            </div>
+        </div>
+    </div>
+    <p style="margin-top: 20px; color: #64748b; font-size: 12px;">
+        Tip: You can click the text above to edit it directly before downloading.
+    </p>
+
+    <script>
+        function generatePDF() {
+            const element = document.getElementById('certificate-area');
+            const clientName = document.querySelector('.client-name').innerText;
+            const options = {
+                margin: 0.5,
+                filename: `License_${clientName}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+            };
+            html2pdf().set(options).from(element).save();
+        }
+    </script>
+
+</body>
+</html>

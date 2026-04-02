@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Hub | Ruberto IT Solution</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary: #003366; --accent: #00d4ff; --dark: #0f172a; --bg: #f8fafc; --gold: #c5a059; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: var(--dark); }
+        
+        /* Hero Section */
+        header { background: linear-gradient(135deg, var(--primary) 0%, #001a33 100%); color: white; padding: 60px 20px; text-align: center; border-bottom: 5px solid var(--accent); }
+        .logo-circle { width: 80px; height: 80px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: var(--primary); font-size: 40px; box-shadow: 0 0 20px rgba(0,212,255,0.4); }
+        
+        .container { max-width: 900px; margin: -40px auto 40px; padding: 0 20px; }
+        
+        /* NEW: MASTER ACCESS BUTTON */
+        .master-access { 
+            background: white; 
+            padding: 20px; 
+            border-radius: 16px; 
+            margin-bottom: 30px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-left: 8px solid var(--accent);
+        }
+        .btn-launch { 
+            background: var(--accent); 
+            color: var(--primary); 
+            padding: 12px 25px; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-weight: 900; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            box-shadow: 0 4px 12px rgba(0,212,255,0.3);
+            transition: 0.3s;
+        }
+        .btn-launch:hover { transform: scale(1.05); background: var(--primary); color: white; }
+
+        /* Overview Cards */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: white; border-radius: 16px; padding: 25px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+        .card i { font-size: 30px; color: var(--accent); margin-bottom: 15px; display: block; }
+        
+        h3 { margin: 0 0 10px; font-size: 18px; color: var(--primary); }
+        p { font-size: 14px; color: #64748b; line-height: 1.6; }
+
+        /* Action Buttons */
+        .btn-stack { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+        .btn { padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; font-size: 14px; transition: 0.2s; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-outline { border: 2px solid var(--primary); color: var(--primary); }
+
+        /* Status Timeline */
+        .timeline { margin-top: 40px; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .status-badge { background: #dcfce7; color: #166534; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+
+        footer { text-align: center; padding: 40px; color: #94a3b8; font-size: 12px; }
+        
+        /* Mobile adjustment */
+        @media (max-width: 600px) { .master-access { flex-direction: column; text-align: center; gap: 15px; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-circle"><i class="fas fa-network-wired"></i></div>
+        <h1 style="margin:0;">Pharmacy Digital Transformation</h1>
+        <p style="opacity: 0.8; max-width: 500px; margin: 10px auto;">A turnkey IT solution by KK Enterprise for modern pharmaceutical management in Namibia.</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="master-access">
+            <div>
+                <h3 style="margin:0;">Client Command Center</h3>
+                <p style="margin:0; font-size: 12px;">Access all contracts, maps, and staff guides.</p>
+            </div>
+            <a href="control_hub.html" class="btn-launch">
+                <i class="fas fa-rocket"></i> LAUNCH PORTAL
+            </a>
+        </div>
+
+        <div class="project-grid">
+            <div class="card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Core PMS System</h3>
+                <p>Proprietary software featuring real-time stock tracking, dispensing modules, and patient history management.</p>
+                <div class="btn-stack">
+                    <a href="system.html" class="btn btn-primary">VIEW DASHBOARD DEMO</a>
+                    <a href="claims.html" class="btn btn-outline">MEDICAL AID MODULE</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-file-invoice-dollar"></i>
+                <h3>Finance & Support</h3>
+                <p>Manage project payments, view professional receipts, and review the Service Level Agreement (SLA).</p>
+                <div class="btn-stack">
+                    <a href="receipt-vault.html" class="btn btn-primary">PAYMENT & RECEIPT VAULT</a>
+                    <a href="terms.html" class="btn btn-outline">SUPPORT TERMS</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-server"></i>
+                <h3>Infrastructure</h3>
+                <p>High-performance workstations, secure local networking, and daily encrypted cloud backups.</p>
+                <div style="margin-top: 20px;">
+                    <span class="status-badge"><i class="fas fa-check"></i> PROVISIONING ACTIVE</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline">
+            <h3 style="margin-top:0;"><i class="fas fa-stream"></i> Project Roadmap</h3>
+            <p style="font-size: 13px;"><b>Phase 1:</b> System Licensing & Customization (In Progress)<br>
+            <b>Phase 2:</b> Hardware Installation & Networking (Scheduled)<br>
+            <b>Phase 3:</b> Staff Training & Go-Live (Target: 7 Days)</p>
+        </div>
+
+        <footer>
+            <strong style="color:var(--primary)">KK ENTERPRISE IT SOLUTIONS</strong><br>
+            "Connection Made Easy"<br>
+            Ruberto Harochab | Lead IT Administrator | +264 81 225 1577<br>
+            Okahandja, Namibia
+        </footer>
+    </div>
+
+</body>
+</html>

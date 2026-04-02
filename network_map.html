@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruberto IT Solution | Network Topology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary: #003366; --accent: #00d4ff; --safe: #22c55e; --bg: #f1f5f9; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 40px; display: flex; flex-direction: column; align-items: center; }
+        
+        .map-container { background: white; padding: 50px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); max-width: 900px; width: 100%; position: relative; border: 1px solid #e2e8f0; }
+        .header { text-align: center; margin-bottom: 50px; }
+        
+        /* The Nodes */
+        .node { display: flex; flex-direction: column; align-items: center; gap: 10px; z-index: 2; position: relative; transition: 0.3s; cursor: pointer; }
+        .node:hover { transform: scale(1.1); }
+        .node i { font-size: 40px; color: var(--primary); background: white; padding: 15px; border-radius: 12px; border: 2px solid #eee; }
+        .node span { font-weight: bold; font-size: 13px; color: #444; }
+        .node small { color: #888; font-size: 11px; }
+
+        /* The Connection Lines */
+        .line-v { width: 4px; height: 50px; background: #cbd5e1; margin: 0 auto; position: relative; }
+        .line-h-container { display: flex; justify-content: space-between; width: 80%; margin: 0 auto; position: relative; height: 50px; border-top: 4px solid #cbd5e1; border-left: 4px solid #cbd5e1; border-right: 4px solid #cbd5e1; }
+
+        /* Secure VPN Highlight */
+        .vpn-path { color: var(--safe) !important; border-color: var(--safe) !important; box-shadow: 0 0 15px rgba(34, 197, 94, 0.3); }
+        .secure-tag { background: var(--safe); color: white; padding: 3px 8px; border-radius: 10px; font-size: 9px; margin-top: 5px; }
+
+        .info-panel { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; max-width: 900px; }
+        .info-card { background: #eef2ff; padding: 15px; border-radius: 10px; border-left: 5px solid var(--primary); font-size: 13px; }
+
+        @media (max-width: 600px) { .info-panel { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1 style="color: var(--primary); margin:0;">Pharmacy Network Architecture</h1>
+        <p style="color: #64748b;">Visualizing Data Flow & Security Perimeters</p>
+    </div>
+
+    <div class="map-container">
+        
+        <div class="node">
+            <i class="fas fa-globe" style="color:#64748b;"></i>
+            <span>WAN (ISP)</span>
+            <small>MTC / Telecom Namibia</small>
+        </div>
+
+        <div class="line-v"></div>
+
+        <div class="node">
+            <i class="fas fa-shield-halved vpn-path"></i>
+            <span>Ruberto IT Solutions SECURITY GATEWAY</span>
+            <small>Hardware VPN Tunnel Active</small>
+            <div class="secure-tag"><i class="fas fa-lock"></i> AES-256 ENCRYPTED</div>
+        </div>
+
+        <div class="line-v"></div>
+
+        <div class="node">
+            <i class="fas fa-server"></i>
+            <span>NETWORK SWITCH</span>
+            <small>Gigabit Distribution</small>
+        </div>
+
+        <div class="line-h-container"></div>
+
+        <div style="display: flex; justify-content: space-between; width: 100%; margin-top: -4px;">
+            
+            <div class="node">
+                <i class="fas fa-laptop-medical"></i>
+                <span>DISPENSING #1</span>
+                <small>IP: 192.168.88.10</small>
+            </div>
+
+            <div class="node">
+                <i class="fas fa-laptop-medical"></i>
+                <span>DISPENSING #2</span>
+                <small>IP: 192.168.88.11</small>
+            </div>
+
+            <div class="node">
+                <i class="fas fa-print"></i>
+                <span>PHARMA PRINTER</span>
+                <small>Static IP: .20</small>
+            </div>
+
+            <div class="node">
+                <i class="fas fa-wifi" style="color:#cbd5e1; border-style: dotted;"></i>
+                <span>GUEST WI-FI</span>
+                <small style="color:red;">ISOLATED (VLAN 20)</small>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="info-panel">
+        <div class="info-card">
+            <strong><i class="fas fa-info-circle"></i> Redundancy Note:</strong>
+            The System is configured with a 3-second failover. If the primary Fiber line fails, the Gateway will attempt to reconnect via the backup LTE module automatically.
+        </div>
+        <div class="info-card">
+            <strong><i class="fas fa-user-shield"></i> Privacy Logic:</strong>
+            The "Guest Wi-Fi" is physically separated from the Pharmacy data. Customers browsing the web cannot "see" or "access" the dispensing database.
+        </div>
+    </div>
+
+    <footer style="margin-top: 50px; color: #94a3b8; font-size: 12px; text-align: center;">
+        &copy; 2026 Ruberto IT Solutions| Otjiwarongo, Namibia
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Register | Ruberto IT Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <style>
+        :root { --primary: #003366; --accent: #00d4ff; --bg: #f1f5f9; --success: #22c55e; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); margin: 0; padding: 10px; color: #1e293b; }
+
+        .controls { max-width: 900px; margin: 10px auto; display: flex; gap: 10px; justify-content: flex-end; }
+        .btn { padding: 10px 18px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 14px; transition: 0.2s; }
+        .btn-pdf { background: var(--primary); color: white; }
+        .btn-print { background: #64748b; color: white; }
+
+        .register-card { background: white; max-width: 900px; margin: 0 auto; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); overflow: hidden; padding: 25px; box-sizing: border-box; }
+        
+        .header { border-bottom: 2px solid #f1f5f9; padding-bottom: 20px; margin-bottom: 20px; }
+        .header h1 { margin: 0; color: var(--primary); font-size: 24px; }
+        
+        /* TABLE STYLES (PC) */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th { text-align: left; background: #f8fafc; padding: 12px; font-size: 12px; text-transform: uppercase; color: #64748b; border-bottom: 2px solid #e2e8f0; }
+        td { padding: 15px 12px; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
+        
+        .asset-id { font-weight: bold; color: var(--primary); }
+        .serial { font-family: 'Courier New', monospace; background: #f8fafc; padding: 2px 5px; border-radius: 4px; font-size: 13px; }
+        .status { color: var(--success); font-weight: bold; font-size: 11px; text-transform: uppercase; }
+
+        /* MOBILE RESPONSIVE LOGIC */
+        @media (max-width: 768px) {
+            thead { display: none; } /* Hide headers on mobile */
+            tr { display: block; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 15px; padding: 10px; }
+            td { display: block; text-align: right; border-bottom: 1px solid #f1f5f9; padding: 10px 5px; position: relative; }
+            td::before { content: attr(data-label); position: absolute; left: 5px; font-weight: bold; color: #64748b; font-size: 12px; text-transform: uppercase; }
+            td:last-child { border-bottom: none; }
+            .header h1 { font-size: 20px; }
+        }
+
+        @media print { .controls { display: none; } body { padding: 0; background: white; } .register-card { box-shadow: none; border: none; } }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <button class="btn btn-pdf" onclick="downloadAssets()">
+            <i class="fas fa-file-download"></i> SAVE AS PDF
+        </button>
+        <button class="btn btn-print" onclick="window.print()">
+            <i class="fas fa-print"></i> PRINT
+        </button>
+    </div>
+
+    <div class="register-card" id="asset-register">
+        <div class="header">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <i class="fas fa-boxes-stacked" style="font-size: 30px; color: var(--primary);"></i>
+                <div>
+                    <h1>Hardware Asset Register</h1>
+                    <p style="margin:0; color: #64748b; font-size: 13px;">Client: <span contenteditable="true">Kamanjab Pharmacy</span> | Managed by Ruberto IT Solutions</p>
+                </div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Asset ID</th>
+                    <th>Device Type</th>
+                    <th>Serial Number</th>
+                    <th>Warranty</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Asset ID" class="asset-id" contenteditable="true">PH-PC-01</td>
+                    <td data-label="Type" contenteditable="true">Dispensing PC (Main)</td>
+                    <td data-label="Serial"><span class="serial" contenteditable="true">LNV-998-XX-2026</span></td>
+                    <td data-label="Warranty" contenteditable="true">2027-04-02</td>
+                    <td data-label="Status" class="status">Active</td>
+                </tr>
+                <tr>
+                    <td data-label="Asset ID" class="asset-id" contenteditable="true">PH-PRT-01</td>
+                    <td data-label="Type" contenteditable="true">Zebra Label Printer</td>
+                    <td data-label="Serial"><span class="serial" contenteditable="true">ZBR-5541-PRT</span></td>
+                    <td data-label="Warranty" contenteditable="true">2027-04-02</td>
+                    <td data-label="Status" class="status">Active</td>
+                </tr>
+                <tr>
+                    <td data-label="Asset ID" class="asset-id" contenteditable="true">PH-NET-01</td>
+                    <td data-label="Type" contenteditable="true">MikroTik VPN Router</td>
+                    <td data-label="Serial"><span class="serial" contenteditable="true">MTK-889-SEC</span></td>
+                    <td data-label="Warranty" contenteditable="true">2027-04-02</td>
+                    <td data-label="Status" class="status">Active</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; font-size: 11px; color: #94a3b8; text-align: center;">
+            Ruberto IT Solutions | Admin: Ruberto Harochab | 081 225 1577
+        </div>
+    </div>
+
+    <script>
+        function downloadAssets() {
+            const element = document.getElementById('asset-register');
+            const options = {
+                margin: 0.3,
+                filename: 'Pharmacy_Asset_Register.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(options).from(element).save();
+        }
+    </script>
+</body>
+</html>

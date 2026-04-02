@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Document | KK Enterprise</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root { --primary: #003366; --bg: #f4f7f9; }
+        body { font-family: 'Georgia', serif; background: var(--bg); margin: 0; padding: 20px; color: #333; }
+        
+        .controls { max-width: 800px; margin: 0 auto 20px; display: flex; justify-content: space-between; }
+        .btn { padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; font-weight: bold; font-family: sans-serif; display: flex; align-items: center; gap: 8px; }
+        .btn-pdf { background: var(--primary); color: white; }
+
+        .doc-container { 
+            background: white; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 60px; 
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-top: 10px solid var(--primary);
+            line-height: 1.6;
+        }
+
+        h1 { color: var(--primary); text-align: center; text-transform: uppercase; font-size: 24px; margin-bottom: 40px; }
+        h3 { color: var(--primary); border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 30px; }
+        .clause { margin-bottom: 20px; font-size: 15px; text-align: justify; }
+        
+        .sig-section { margin-top: 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .sig-box { border-top: 1px solid #000; padding-top: 10px; margin-top: 40px; text-align: center; font-size: 13px; }
+
+        @media (max-width: 600px) {
+            .doc-container { padding: 20px; }
+            .sig-section { grid-template-columns: 1fr; }
+        }
+
+        @media print { .controls { display: none; } body { padding: 0; } .doc-container { box-shadow: none; border: none; width: 100%; } }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <a href="index.html" class="btn" style="background: #64748b; color: white; text-decoration: none;"><i class="fas fa-arrow-left"></i> BACK TO PORTAL</a>
+        <button class="btn btn-pdf" onclick="generatePDF()"><i class="fas fa-file-pdf"></i> DOWNLOAD SIGNING COPY</button>
+    </div>
+
+    <div id="legal-doc" class="doc-container">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <i class="fas fa-gavel" style="font-size: 40px; color: var(--primary);"></i>
+        </div>
+        
+        <h1>Master Service Agreement (MSA)</h1>
+        
+        <p style="text-align: center; font-weight: bold;">
+            Between Ruberto IT Solutions and <span contenteditable="true">Kamanjab Pharmacy</span>
+        </p>
+
+        <div class="clause">
+            <h3>1. Scope of Work</h3>
+            The Provider (Ruberto IT Solutions) agrees to install and maintain the Pharmacy Management System (PMS) v3.0, including secure VPN configuration and hardware optimization as specified in the technical roadmap.
+        </div>
+
+        <div class="clause">
+            <h3>2. Intellectual Property</h3>
+            All software code, database structures, and custom scripts remain the exclusive property of <strong>Ruberto Harochab (Ruberto IT Solution)</strong>. The Client is granted a perpetual license for use at one business location.
+        </div>
+
+        <div class="clause">
+            <h3>3. Payment & Fees</h3>
+            The Client agrees to the one-time implementation fee of N$ 10,750.00 and a recurring monthly maintenance fee of <strong>N$ 650.00</strong>. Failure to pay support fees may result in suspension of cloud backup services.
+        </div>
+
+        <div class="clause">
+            <h3>4. Data Privacy</h3>
+            The Provider shall not share patient data with third parties. All transmissions to Medical Aid switches are encrypted using AES-256 protocols.
+        </div>
+
+        <div class="sig-section">
+            <div class="sig-box">
+                <strong>Ruberto Harochab</strong><br>Lead Administrator, Ruberto IT Solution.
+            </div>
+            <div class="sig-box">
+                <strong>Authorized Signatory</strong><br><span contenteditable="true">[Client Name / Owner]</span>
+            </div>
+        </div>
+
+        <p style="font-size: 10px; color: #94a3b8; text-align: center; margin-top: 40px;">
+            Document Generated: April 02, 2026 | Otjiwarongo, Namibia
+        </p>
+    </div>
+
+    <script>
+        function generatePDF() {
+            const element = document.getElementById('legal-doc');
+            const options = {
+                margin: 0.5,
+                filename: 'RubertoITSolution_MSA.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().set(options).from(element).save();
+        }
+    </script>
+</body>
+</html>
