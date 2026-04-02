@@ -3,168 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KK Enterprise | Client Command Center</title>
+    <title>Pharmacist Quick-Start | Ruberto IT Solutions PMS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #003366;
-            --accent: #00d4ff;
-            --success: #22c55e;
-            --warning: #f59e0b;
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-        }
+        :root { --primary: #003366; --accent: #00d4ff; --success: #166534; --warning: #92400e; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f1f5f9; margin: 0; padding: 15px; }
+        
+        .header { background: var(--primary); color: white; padding: 20px; border-radius: 15px; margin-bottom: 20px; text-align: center; }
+        .header h1 { margin: 0; font-size: 20px; }
+        .header p { margin: 5px 0 0; font-size: 12px; opacity: 0.8; }
 
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: var(--bg);
-            color: white;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        .card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-left: 5px solid var(--primary); }
+        .card h2 { margin: 0 0 10px; font-size: 16px; display: flex; align-items: center; gap: 10px; color: var(--primary); }
+        
+        .step { display: flex; gap: 12px; margin-bottom: 12px; font-size: 14px; line-height: 1.4; }
+        .step-num { background: var(--primary); color: white; min-width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            width: 100%;
-            max-width: 1000px;
-        }
+        .emergency-btn { background: #fee2e2; color: #991b1b; padding: 15px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; font-weight: bold; border: 1px solid #fecaca; }
+        
+        .tag { font-size: 11px; padding: 2px 6px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
+        .tag-medaid { background: #e0f2fe; color: #0369a1; }
 
-        .logo-area { font-size: 40px; color: var(--accent); margin-bottom: 10px; }
-        .client-tag { background: rgba(0, 212, 255, 0.1); color: var(--accent); padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; letter-spacing: 1px; }
-
-        /* GRID LAYOUT */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            width: 100%;
-            max-width: 1100px;
-        }
-
-        /* TILE STYLES */
-        .tile {
-            background: var(--card-bg);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 25px;
-            text-decoration: none;
-            color: white;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tile:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-            background: #2d3748;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
-        .tile i { font-size: 30px; color: var(--accent); }
-        .tile h3 { margin: 0; font-size: 18px; }
-        .tile p { margin: 0; font-size: 13px; color: #94a3b8; line-height: 1.4; }
-
-        .category-tag {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 10px;
-            text-transform: uppercase;
-            font-weight: bold;
-            opacity: 0.6;
-        }
-
-        /* SECTION HEADERS */
-        .section-title {
-            grid-column: 1 / -1;
-            margin-top: 20px;
-            color: #64748b;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-bottom: 1px solid #334155;
-            padding-bottom: 10px;
-        }
-
-        /* MOBILE FIX */
-        @media (max-width: 600px) {
-            .dashboard-grid { grid-template-columns: 1fr; }
-        }
+        footer { text-align: center; padding: 20px; color: #64748b; font-size: 11px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-area"><i class="fas fa-microchip"></i></div>
-        <h1 style="margin: 0;">Ruberto IT Solutions</h1>
-        <p style="color: #94a3b8; margin-bottom: 15px;">Project: Pharmacy PMS Deployment v3.0</p>
-        <span class="client-tag">CLIENT: KAMANJAB PHARMACY</span>
-    </header>
-
-    <div class="dashboard-grid">
-        
-        <div class="section-title">Legal & Financial</div>
-
-        <a href="contract_msa.html" class="tile">
-            <span class="category-tag">LEGAL</span>
-            <i class="fas fa-file-signature"></i>
-            <h3>Master Agreement (MSA)</h3>
-            <p>The core service contract and intellectual property protection.</p>
-        </a>
-
-        <a href="license_cert.html" class="tile">
-            <span class="category-tag">CERTIFICATE</span>
-            <i class="fas fa-award" style="color: var(--warning);"></i>
-            <h3>Software License</h3>
-            <p>Official ownership certificate for the Pharmacy PMS v3.0.</p>
-        </a>
-
-        <div class="section-title">Infrastructure & Security</div>
-
-        <a href="network_map.html" class="tile">
-            <span class="category-tag">TECH</span>
-            <i class="fas fa-network-wired"></i>
-            <h3>Interactive Network Map</h3>
-            <p>Visual diagram of the VPN Tunnel and Hardware Topology.</p>
-        </a>
-
-        <a href="asset_register.html" class="tile">
-            <span class="category-tag">INVENTORY</span>
-            <i class="fas fa-list-check"></i>
-            <h3>Hardware Asset Register</h3>
-            <p>Serial numbers, warranties, and device inventory.</p>
-        </a>
-
-        <div class="section-title">Support & Operations</div>
-
-        <a href="quick_guide.html" class="tile">
-            <span class="category-tag">STAFF</span>
-            <i class="fas fa-mobile-screen-button" style="color: var(--success);"></i>
-            <h3>Pharmacist Mobile Guide</h3>
-            <p>Step-by-step dispensing and Medical Aid verification instructions.</p>
-        </a>
-
-        <a href="troubleshooting.html" class="tile">
-            <span class="category-tag">SUPPORT</span>
-            <i class="fas fa-life-ring"></i>
-            <h3>Troubleshooting Portal</h3>
-            <p>Logic flowchart for fixing internet and printer issues.</p>
-        </a>
-
+    <div class="header">
+        <h1>Pharmacist Handheld Guide</h1>
+        <p>Ruberto IT Solution Pharmacy Management System v3.0</p>
     </div>
 
-    <footer style="margin-top: 50px; text-align: center; color: #475569; font-size: 12px;">
-        &copy; 2026 Ruberto Harochab | IT Administrator & Lead Developer
+    <div class="card">
+        <h2><i class="fas fa-pills"></i> Dispensing Basics</h2>
+        <div class="step">
+            <div class="step-num">1</div>
+            <div>Search <strong>Patient Name</strong> or scan <strong>ID Card</strong>.</div>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div>Scan <strong>Medicine Barcode</strong> (NAPPI Code).</div>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <div>Select <strong>Dosage</strong> (e.g., 1 Tab x 3 Daily).</div>
+        </div>
+    </div>
+
+    <div class="card" style="border-color: var(--accent);">
+        <h2><i class="fas fa-network-wired"></i> Medical Aid (PSEMAS)</h2>
+        <div class="step">
+            <div class="step-num">!</div>
+            <div>Click <strong>"Verify Eligibility"</strong> before packing meds.</div>
+        </div>
+        <div class="step">
+            <div class="step-num">?</div>
+            <div>If rejected: Check <strong>Member ID</strong> or <strong>Benefit Funds</strong>.</div>
+        </div>
+        <span class="tag tag-medaid">Real-time Auth Required</span>
+    </div>
+
+    <div class="card" style="border-color: var(--warning);">
+        <h2><i class="fas fa-tools"></i> Quick Fixes</h2>
+        <div class="step">
+            <i class="fas fa-print" style="color:var(--warning)"></i>
+            <div><strong>Printer Jam:</strong> Open lid, clear paper, hold "Feed" for 3s.</div>
+        </div>
+        <div class="step">
+            <i class="fas fa-wifi-slash" style="color:var(--warning)"></i>
+            <div><strong>No Internet:</strong> System switches to <strong>Offline Mode</strong>. Continue dispensing; it will sync later.</div>
+        </div>
+    </div>
+
+    <a href="tel:+264812251577" class="emergency-btn">
+        <i class="fas fa-phone-alt"></i> CALL Ruberto IT SUPPORT
+    </a>
+
+    <footer>
+        Authorized for use at Kamanjab Pharmacy only.<br>
+        Lead Admin: Ruberto Harochab
     </footer>
 
 </body>
 </html>
-
