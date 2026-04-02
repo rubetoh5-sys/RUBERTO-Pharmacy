@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruberto IT Solutions | Kamanjab Pharmacy POS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"><div id="loginPage" class="page active" style="background:var(--primary); color:white; text-align:center; padding-top:100px;">
+    <i class="fas fa-user-shield fa-4x"></i>
+    <h2>Ruberto IT Solutions Secure Access</h2>
+    <div class="container">
+        <input type="password" id="passCode" class="search-box" placeholder="Enter Admin PIN">
+        <button class="btn btn-success" onclick="checkLogin()">Access System</button>
+        <p style="font-size:12px; margin-top:20px;">Authorized Personnel Only</p>
+    </div>
+</div>
+
+<script>
+    function checkLogin() {
+        const pin = document.getElementById('passCode').value;
+        if(pin === "1234") { // Simple demo PIN
+            showPage('home');
+        } else {
+            alert("Unauthorized Access Denied");
+        }
+    }
+</script>
+
+    <style>
+        :root { --primary: #003366; --accent: #0088cc; --success: #2e7d32; --danger: #d32f2f; --warning: #ff9800; --bg: #f4f7f6; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: #333; }
+        
+        /* Navigation Control */
+        .page { display: none; min-height: 100vh; padding-bottom: 50px; }
+        .active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Professional Header */
+        header { background: var(--primary); color: white; padding: 40px 20px; text-align: center; border-radius: 0 0 30px 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .logo-icon { font-size: 50px; margin-bottom: 10px; }
+        
+        /* Main Grid */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; margin-top: -30px; }
+        .card { background: white; padding: 25px 15px; border-radius: 20px; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,0.08); cursor: pointer; border: 1px solid #eee; transition: 0.2s; }
+        .card:active { transform: scale(0.95); background: #f0f0f0; }
+        .card i { font-size: 35px; color: var(--accent); margin-bottom: 12px; display: block; }
+        .card span { font-weight: bold; font-size: 14px; color: var(--primary); }
+
+        /* Page UI Components */
+        .sub-header { padding: 20px; color: white; display: flex; align-items: center; gap: 15px; font-weight: bold; }
+        .container { padding: 20px; }
+        .search-box { width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 12px; box-sizing: border-box; font-size: 16px; outline: none; }
+        
+        .list-item { background: white; padding: 15px; margin-bottom: 10px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .low-stock { border-left: 5px solid var(--danger); }
+        .badge { padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: bold; color: white; }
+
+        /* Action Buttons */
+        .btn { width: 100%; padding: 16px; border: none; border-radius: 12px; font-weight: bold; font-size: 16px; cursor: pointer; color: white; transition: 0.2s; }
+        .btn-success { background: var(--success); }
+        .btn-primary { background: var(--primary); }
+        .btn:active { opacity: 0.8; }
+
+        /* Unified POS View */
+        .pos-summary { background: white; padding: 20px; border-radius: 15px; border: 2px dashed var(--accent); margin-bottom: 20px; }
+        #claimResult { display: none; margin-top: 15px; padding: 15px; background: #e8f5e9; border-radius: 10px; border: 1px solid var(--success); }
+    </style>
+</head>
+<body>
+
+    <div id="home" class="page active">
+        <header>
+            <div class="logo-icon"><i class="fas fa-cash-register"></i></div>
+            <h1 style="margin:0;">Ruberto IT Solutions</h1>
+            <p style="margin:5px 0 0; font-style: italic; opacity: 0.9;">Connection Made Easy</p>
+        </header>
+
+        <div class="grid">
+            <div class="card" onclick="showPage('pos')"><i class="fas fa-shopping-cart"></i><span>Till / Checkout</span></div>
+            <div class="card" onclick="showPage('inventory')"><i class="fas fa-boxes-stacked"></i><span>Stock Control</span></div>
+            <div class="card" onclick="showPage('expiry')"><i class="fas fa-calendar-times" style="color:var(--danger)"></i><span>Expiries</span></div>
+            <div class="card" onclick="showPage('sales')"><i class="fas fa-file-invoice-dollar"></i><span>Daily Reports</span></div>
+            <div class="card" onclick="showPage('admin')"><i class="fas fa-user-lock"></i><span>Admin Setup</span></div>
+            <div class="card" onclick="window.location.href='tel:+264811234567'"><i class="fas fa-headset" style="color:var(--success)"></i><span>IT Support</span></div>
+        </div>
+    </div>
+
+    <div id="pos" class="page">
+        <div class="sub-header" style="background:var(--accent)">
+            <i class="fas fa-arrow-left" onclick="showPage('home')"></i>
+            <span>Till Point #01</span>
+        </div>
+        <div class="container">
+            <div class="pos-summary">
+                <small>Basket Summary</small>
+                <h3 style="margin:5px 0;">1x Amoxicillin 250mg (Caps)</h3>
+                <h2 style="color:var(--primary); margin:0;">Total Due: N$ 120.00</h2>
+            </div>
+            
+            <p>Verification Method:</p>
+            <input type="text" id="maNumber" class="search-box" placeholder="Enter Medical Aid # (e.g. PSEMAS-882)">
+            
+            <button class="btn btn-success" onclick="processClaim()">
+                <i class="fas fa-search-dollar"></i> Verify & Process Claim
+            </button>
+
+            <div id="claimResult">
+                <h4 style="color:var(--success); margin:0;"><i class="fas fa-check-circle"></i> CLAIM APPROVED</h4>
+                <hr>
+                <p>Medical Aid Pays: <strong>N$ 100.00</strong></p>
+                <p>Customer Cash: <strong>N$ 20.00</strong></p>
+                <button class="btn btn-primary" onclick="alert('Printing Receipt #5502...')">Complete Sale</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="inventory" class="page">
+        <div class="sub-header" style="background:var(--primary)">
+            <i class="fas fa-arrow-left" onclick="showPage('home')"></i>
+            <span>Inventory System</span>
+        </div>
+        <div class="container">
+            <input type="text" id="stockSearch" class="search-box" placeholder="Search product..." onkeyup="filterStock()">
+            <div id="stockList">
+                <div class="list-item"><div><strong>Panado 500mg</strong><br><small>Shelf A-1</small></div><span class="badge" style="background:var(--success)">45 Units</span></div>
+                <div class="list-item low-stock"><div><strong>Amoxicillin 250mg</strong><br><small>Fridge-01</small></div><span class="badge" style="background:var(--danger)">5 Units</span></div>
+                <div class="list-item"><div><strong>Allergex Tablets</strong><br><small>Shelf B-4</small></div><span class="badge" style="background:var(--success)">88 Units</span></div>
+                <div class="list-item low-stock"><div><strong>Insulin Pens</strong><br><small>Fridge-01</small></div><span class="badge" style="background:var(--danger)">2 Units</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="expiry" class="page">
+        <div class="sub-header" style="background:var(--danger)">
+            <i class="fas fa-arrow-left" onclick="showPage('home')"></i>
+            <span>Expiry Warnings</span>
+        </div>
+        <div class="container">
+            <div class="list-item" style="border-left: 5px solid var(--danger)">
+                <div><strong>Vitamin C Syrup</strong><br><small>Batch #8821</small></div>
+                <div style="color:var(--danger); font-weight:bold;">Exp: 15 Apr 2026</div>
+            </div>
+            <div class="list-item" style="border-left: 5px solid var(--warning)">
+                <div><strong>Paracetamol Kids</strong><br><small>Batch #1102</small></div>
+                <div style="color:var(--warning); font-weight:bold;">Exp: 30 Jun 2026</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="sales" class="page">
+        <div class="sub-header" style="background:var(--primary)">
+            <i class="fas fa-arrow-left" onclick="showPage('home')"></i>
+            <span>Financial Reports</span>
+        </div>
+        <div class="container">
+            <div class="card" style="margin-bottom:20px; border-top: 5px solid var(--accent);">
+                <p>Today's Total Revenue</p>
+                <h1 style="color:var(--primary); margin:5px 0;">N$ 14,250.00</h1>
+            </div>
+            <div class="list-item"><span>Medical Aid Revenue</span><strong>N$ 11,000</strong></div>
+            <div class="list-item"><span>Cash / EFT Revenue</span><strong>N$ 3,250</strong></div>
+        </div>
+    </div>
+
+    <div id="admin" class="page">
+        <div class="sub-header" style="background:#333">
+            <i class="fas fa-arrow-left" onclick="showPage('home')"></i>
+            <span>System Administration</span>
+        </div>
+        <div class="container">
+            <div class="list-item" onclick="alert('Full System Backup initiated to Local SSD...')">
+                <span>Database Backup</span><i class="fas fa-cloud-upload-alt"></i>
+            </div>
+            <div class="list-item"><span>User Permissions (Till 1)</span><i class="fas fa-users-cog"></i></div>
+            <div class="list-item"><span>Pharmacy Details & Logo</span><i class="fas fa-edit"></i></div>
+            <button class="btn" style="background:#444; margin-top:20px;" onclick="showPage('home')">Logout Admin</button>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        function filterStock() {
+            let input = document.getElementById('stockSearch').value.toLowerCase();
+            let items = document.getElementById('stockList').getElementsByClassName('list-item');
+            for (let i = 0; i < items.length; i++) {
+                let text = items[i].innerText.toLowerCase();
+                items[i].style.display = text.includes(input) ? "flex" : "none";
+            }
+        }
+
+        function processClaim() {
+            if(document.getElementById('maNumber').value === "") return alert("Please enter Medical Aid #");
+            alert("Contacting PSEMAS/Medical Aid Switch...");
+            setTimeout(() => { document.getElementById('claimResult').style.display = 'block'; }, 1000);
+        }
+    </script>
+
+</body>
+</html>
